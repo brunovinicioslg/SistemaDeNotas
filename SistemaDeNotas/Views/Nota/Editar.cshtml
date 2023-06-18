@@ -1,0 +1,41 @@
+﻿@model NotaModel
+@{
+    ViewData["Title"] = "Editar Nota";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Alterar notas</h1>
+
+</div>
+
+<form asp-controller="Nota" asp-action="Alterar" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="materia">Matéria</label>
+        <input type="text" asp-for="Materia" class="form-control" placeholder="Digite aqui a Matéria">
+        @Html.ValidationMessageFor(x=>x.Materia)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="nota1bimestre">Nota 1° Bimestre</label>
+        <input type="text" asp-for="Nota1Bimestre" class="form-control" placeholder="Digite aqui a Nota do 1° Bimestre">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="nota2bimestre">Nota 2° Bimestre</label>
+        <input type="text" asp-for="Nota2Bimestre" class="form-control" placeholder="Digite aqui a Nota do 2° Bimestre">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="nota3bimestre">Nota 3° Bimestre</label>
+        <input type="text" asp-for="Nota3Bimestre" class="form-control" placeholder="Digite aqui a Nota do 3° Bimestre">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="nota14bimestre">Nota 4° Bimestre</label>
+        <input type="text" asp-for="Nota4bimestre" class="form-control" placeholder="Digite aqui a Nota do 4° Bimestre">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Alterar</button>
+</form>

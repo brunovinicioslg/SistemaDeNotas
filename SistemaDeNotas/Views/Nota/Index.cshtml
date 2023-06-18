@@ -1,0 +1,64 @@
+﻿@model List<NotaModel>
+@{
+    ViewData["Title"] = "Notas";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+<div class="text-center">
+
+    <div class="">
+        <a class="btn btn-primary" role="button" asp-controller="Nota" asp-action="Criar"> Adicionar Nota</a>
+    </div>
+    <h1 class="display-4">Essas são suas notas</h1>
+
+    <table class="table" id="table-notas">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Matéria</th>
+                <th scope="col">Nota 1° Bimestre</th>
+                <th scope="col">Nota 2° Bimestre</th>
+                <th scope="col">Nota 3° Bimestre</th>
+                <th scope="col">Nota 4° Bimestre</th>
+                <th scope="col">Média Anual</th>
+            </tr>
+        </thead>
+        <tbody>
+           @if(Model != null && Model.Any())
+            {
+                foreach(var nota in Model){
+                    <tr>
+                        <th scope="row">@nota.Id</th>
+                        <td>@nota.Materia</td>
+                        <td>@nota.Nota1Bimestre</td>
+                        <td>@nota.Nota2Bimestre</td>
+                        <td>@nota.Nota3Bimestre</td>
+                        <td>@nota.Nota4bimestre</td>
+                        <td>@{
+                                var total = nota.Nota1Bimestre + nota.Nota2Bimestre + nota.Nota3Bimestre + nota.Nota4bimestre;
+                            }
+                            @total
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd"><td valign="top" colspan="7">Nenhum Usuario Encontrado</td></tr>
+            }
+        </tbody>
+    </table>
+</div>
