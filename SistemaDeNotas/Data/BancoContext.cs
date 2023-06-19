@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaDeNotas.Data.Map;
 using SistemaDeNotas.Models;
 
 namespace SistemaDeNotas.Data
@@ -13,6 +14,12 @@ namespace SistemaDeNotas.Data
 
         public DbSet<NotaModel> Notas { get; set; }
         public DbSet<UsuarioModel>  Usuarios { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new NotaMap());
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }

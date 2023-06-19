@@ -28,12 +28,6 @@
 <form asp-controller="Usuario" asp-action="Editar" method="post">
     <input type="hidden" asp-for="Id" />
     <div class="form-group">
-        <label for="usuario">Usuário</label>
-        <input type="text" asp-for="Usuario" class="form-control" placeholder="Digite aqui o usuario">
-        @Html.ValidationMessageFor(x=>x.Usuario)
-    </div>
-    <br />
-    <div class="form-group">
         <label for="nome">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" placeholder="Digite aqui o Nome">
         @Html.ValidationMessageFor(x=>x.Nome)

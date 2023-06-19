@@ -12,5 +12,13 @@ namespace SistemaDeNotas.Models
         public float? Nota3Bimestre { get; set; }
         public float? Nota4bimestre { get; set; }
 
+        public int? UsuarioID { get; set; }
+
+        public string? UsuarioNome { get; set; }
+
+
+
+        public UsuarioModel? Usuario { get; set; }
+        //public object? Enums { get; internal set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SistemaDeNotas.Models;
+﻿using SistemaDeNotas.Enums;
+using SistemaDeNotas.Models;
 
 namespace SistemaDeNotas.Repositorio
 {
@@ -6,9 +7,12 @@ namespace SistemaDeNotas.Repositorio
     {
         NotaModel ListarPorId(int id);
         NotaModel ListarPorMateria(string mat);
-        List<NotaModel> BuscarTodos();
+        List<NotaModel> BuscarTodos(int usuarioId);
+        List<NotaModel> BuscarTodosAdm();
         NotaModel Adicionar(NotaModel nota);
         NotaModel Atualizar(NotaModel nota);
+
+
 
         bool Apagar(int id);
     }

@@ -1,4 +1,5 @@
-﻿using SistemaDeNotas.Models;
+﻿using SistemaDeNotas.Enums;
+using SistemaDeNotas.Models;
 
 namespace SistemaDeNotas.Repositorio
 {

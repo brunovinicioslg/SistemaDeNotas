@@ -22,6 +22,7 @@ namespace SistemaDeNotas.Models
 
         public DateTime DataCadastro { get; set; }
         public DateTime? DataAtualizacao { get; set; }   
+        public virtual List<NotaModel>? Notas { get; set; }
         public bool SenhaValida(string senha)
         {
             return Senha == senha.GerarHash();
@@ -42,5 +43,6 @@ namespace SistemaDeNotas.Models
         {
             Senha=novaSenha.GerarHash();
         }
+
     }
 }

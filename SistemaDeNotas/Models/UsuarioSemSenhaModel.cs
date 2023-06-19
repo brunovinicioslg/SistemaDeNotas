@@ -9,8 +9,6 @@ namespace SistemaDeNotas.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Digite o Nome")]
         public string Nome { get; set; }
-        [Required(ErrorMessage = "Digite o Usuário")]
-        public string Usuario { get; set; }
         public string? Email { get; set;}
         [Required(ErrorMessage = "Digite a Senha")]
         public string Turma { get; set;}

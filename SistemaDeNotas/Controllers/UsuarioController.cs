@@ -9,13 +9,17 @@ namespace SistemaDeNotas.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        private readonly INotaRepositorio _notaRepositorio;
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio,
+                                 INotaRepositorio notaRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _notaRepositorio = notaRepositorio;
         }
         public IActionResult Index()
         {
             List<UsuarioModel> usuarios = _usuarioRepositorio.BuscarTodos();
+
             return View(usuarios);
         }
         public IActionResult Criar()
@@ -53,6 +57,14 @@ namespace SistemaDeNotas.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        public IActionResult ListarNotasPorUsuarioId(int id)
+        {
+            List<NotaModel> notas = _notaRepositorio.BuscarTodos(id);
+            return PartialView("_NotasUsuario", notas);
+        }
+
+
         [HttpPost]
         public IActionResult Criar(UsuarioModel usuarios)
         {
@@ -62,7 +74,6 @@ namespace SistemaDeNotas.Controllers
                 {
                     usuarios = _usuarioRepositorio.Adicionar(usuarios);
                     TempData["MensagemSucesso"] = "Inserido com sucesso";
-                    Console.WriteLine("teste");
                     return RedirectToAction("Index");
                 }
                 return View(usuarios);
@@ -87,7 +98,6 @@ namespace SistemaDeNotas.Controllers
                     {
                         Id = usuarioSemSenhaModel.Id,
                         Nome = usuarioSemSenhaModel.Nome,
-                        Usuario = usuarioSemSenhaModel.Usuario,
                         Email = usuarioSemSenhaModel.Email,
                         Turma = usuarioSemSenhaModel.Turma,
                         Perfil = usuarioSemSenhaModel.Perfil

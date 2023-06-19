@@ -1,30 +1,16 @@
 ﻿@model NotaModel
 @{
-    ViewData["Title"] = "Cadastrar nota";
+    ViewData["Title"] = "Editar Nota";
 }
 
 <div class="text-center">
 
-    <h1 class="display-4">Cadastrar Notas</h1>
+    <h1 class="display-4">Alterar notas</h1>
 
 </div>
 
-@if(TempData["MensagemSucesso"]!= null)
-{
-    <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-        @TempData["MensagemSucesso"]
-    </div>
-}
-@if (TempData["MensagemErro"] != null)
-{
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-        @TempData["MensagemErro"]
-    </div>
-}
-
-<form asp-controller="Nota" asp-action="Criar" method="post">
+<form asp-controller="AdminNotas" asp-action="Alterar" method="post">
+    <input type="hidden" asp-for="Id" />
     <div class="form-group">
         <label for="materia">Matéria</label>
         <input type="text" asp-for="Materia" class="form-control" placeholder="Digite aqui a Matéria">
@@ -51,5 +37,6 @@
         <input type="text" asp-for="Nota4bimestre" class="form-control" placeholder="Digite aqui a Nota do 4° Bimestre">
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Inserir</button>
+    <button type="submit" class="btn btn-primary">Alterar</button>
+    <a class="btn btn-secondary btn-block" asp-controller="AdminNotas" asp-action="Index"> Voltar</a>
 </form>

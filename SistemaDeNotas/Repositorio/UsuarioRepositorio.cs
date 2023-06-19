@@ -1,4 +1,5 @@
-﻿using SistemaDeNotas.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaDeNotas.Data;
 using SistemaDeNotas.Models;
 
 namespace SistemaDeNotas.Repositorio
@@ -22,9 +23,12 @@ namespace SistemaDeNotas.Repositorio
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);
         }
+
         public List<UsuarioModel> BuscarTodos()
         {
-            return _bancoContext.Usuarios.ToList();
+            return _bancoContext.Usuarios
+                .Include(x=>x.Notas)
+                .ToList();
         }
         public UsuarioModel Adicionar(UsuarioModel usuario)
         {
@@ -42,9 +46,6 @@ namespace SistemaDeNotas.Repositorio
         {
             UsuarioModel usuarioDB = ListarPorId(usuario.Id);
             if (usuarioDB == null) throw new Exception("Houve um erro na atualização!");
-            UsuarioModel usuarioDB2 = ListarPorUsuario(usuario.Usuario);
-            if (usuarioDB2 != null) throw new Exception(" Já existe um usuario com esse nome");
-            usuarioDB.Usuario = usuario.Usuario;
             usuarioDB.Nome = usuario.Nome;
             usuarioDB.Email = usuario.Email;
             usuarioDB.Turma = usuario.Turma;

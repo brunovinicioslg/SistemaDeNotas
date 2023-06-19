@@ -1,4 +1,8 @@
-﻿using SistemaDeNotas.Data;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
+using SistemaDeNotas.Data;
+using SistemaDeNotas.Enums;
+using SistemaDeNotas.Filters;
 using SistemaDeNotas.Models;
 
 namespace SistemaDeNotas.Repositorio
@@ -14,23 +18,28 @@ namespace SistemaDeNotas.Repositorio
         {
             return _bancoContext.Notas.FirstOrDefault(x => x.Id == id);
         }
-        public List<NotaModel> BuscarTodos()
+
+        public List<NotaModel> BuscarTodos(int usuarioId)
+        {
+            return _bancoContext.Notas.Where(x=>x.UsuarioID == usuarioId).ToList();
+        }
+        public List<NotaModel> BuscarTodosAdm()
         {
             return _bancoContext.Notas.ToList();
         }
         public NotaModel Adicionar(NotaModel nota)
         {
-            //gravar no banco de dados
-            NotaModel notaDB = ListarPorMateria(nota.Materia);
-            if (notaDB != null) throw new Exception("Já existe uma matéria com esse nome!");
+
             _bancoContext.Notas.Add(nota);
             _bancoContext.SaveChanges();
             return nota;
         }
 
+
         public NotaModel Atualizar(NotaModel nota)
         {
            NotaModel notaDB = ListarPorId(nota.Id);
+            
             if (notaDB == null) throw new Exception("Houve um erro na atualização!");
             notaDB.Materia = nota.Materia;
             notaDB.Nota1Bimestre = nota.Nota1Bimestre;
@@ -56,5 +65,7 @@ namespace SistemaDeNotas.Repositorio
             return _bancoContext.Notas.FirstOrDefault(x => x.Materia == mat);
 
         }
+
+ 
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaDeNotas.Enums;
 using SistemaDeNotas.Filters;
+using SistemaDeNotas.Helper;
 using SistemaDeNotas.Models;
 using SistemaDeNotas.Repositorio;
 
@@ -9,13 +11,17 @@ namespace SistemaDeNotas.Controllers
     public class NotaController : Controller
     {
         private readonly INotaRepositorio _notaRepositorio;
-        public NotaController(INotaRepositorio notaRepositorio)
+        private readonly ISessao _sessao;
+        public NotaController(INotaRepositorio notaRepositorio,
+                               ISessao sessao)
         {
             _notaRepositorio= notaRepositorio;
+            _sessao= sessao;
         }
         public IActionResult Index()
         {
-            List<NotaModel> notas = _notaRepositorio.BuscarTodos();
+            UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+            List<NotaModel> notas = _notaRepositorio.BuscarTodos(usuarioLogado.Id);
             return View(notas);
         }
         public IActionResult Criar()
@@ -36,6 +42,10 @@ namespace SistemaDeNotas.Controllers
         {
             try
             {
+                UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                UsuarioModel usuario = new UsuarioModel();
+                usuario.Perfil = usuarioLogado.Perfil;
+                if (usuario.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
                 bool apagado = _notaRepositorio.Apagar(id);
                 if (apagado)
                 {
@@ -60,9 +70,14 @@ namespace SistemaDeNotas.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _notaRepositorio.Adicionar(nota);
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    UsuarioModel usuario = new UsuarioModel();
+                    usuario.Perfil = usuarioLogado.Perfil;
+                    if(usuario.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
+                    //nota.UsuarioID = usuarioLogado.Id;
+                    nota = _notaRepositorio.Adicionar(nota);
                     TempData["MensagemSucesso"] = "Inserido com sucesso";
-                    return RedirectToAction("Index");
+                     return RedirectToAction("Index");
                 }
                 return View(nota);
             }
@@ -81,7 +96,12 @@ namespace SistemaDeNotas.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _notaRepositorio.Atualizar(nota);
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    UsuarioModel usuario = new UsuarioModel();
+                    usuario.Perfil = usuarioLogado.Perfil;
+                    if (usuario.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
+                    //nota.UsuarioID = usuarioLogado.Id;
+                    nota = _notaRepositorio.Atualizar(nota);
                     TempData["MensagemSucesso"] = "Alterado com sucesso";
                     return RedirectToAction("Index");
                 }

@@ -5,6 +5,27 @@
 $(document).ready(function () {
     getDatatable('#table-notas');
     getDatatable('#table-usuarios');
+
+
+    $('.btn-total-notas').click(function () {
+        var usuarioID = $(this).attr('usuario-id');
+        console.log(usuarioID);
+        $.ajax({
+            type: 'GET',
+            url: '/Usuario/ListarNotasPorUsuarioId/' + usuarioID,
+            success: function (result) {
+                console.log("teste");
+                $("#listaNotasUsuario").html(result);
+                $('#modalNotasUsuario').modal();
+                getDatatable('#table-notas-usuario');
+
+            }
+        });
+        $("#teste2").click(function () {
+            
+        });
+
+    });
 });
 
 function getDatatable(id) {

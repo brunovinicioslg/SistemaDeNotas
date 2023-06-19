@@ -1,0 +1,58 @@
+﻿@model List<NotaModel>
+
+<table class="display" id="table-notas-usuario" syle="width:100%">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Matéria</th>
+            <th scope="col">Nota 1° Bimestre</th>
+            <th scope="col">Nota 2° Bimestre</th>
+            <th scope="col">Nota 3° Bimestre</th>
+            <th scope="col">Nota 4° Bimestre</th>
+            <th scope="col">Média Anual</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model != null && Model.Any())
+        {
+            @foreach (var nota in Model)
+            {
+                <tr>
+                    <th scope="row">@nota.Id</th>
+                    <td>@nota.Materia</td>
+                    <td>@nota.Nota1Bimestre</td>
+                    <td>@nota.Nota2Bimestre</td>
+                    <td>@nota.Nota3Bimestre</td>
+                    <td>@nota.Nota4bimestre</td>
+                    <td>
+                            @{
+                                var total = nota.Nota1Bimestre + nota.Nota2Bimestre + nota.Nota3Bimestre + nota.Nota4bimestre;
+                            }
+                            @total
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a role="button" class="btn btn-primary" asp-route-id="@nota.Id" asp-controller="AdminNotas" asp-action="Editar">Editar</a>
+                            <a role="button" class="btn btn-danger" asp-route-id="@nota.Id" asp-controller="AdminNotas" asp-action="ApagarConfirmacao">Apagar</a>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
