@@ -5,8 +5,6 @@
 $(document).ready(function () {
     getDatatable('#table-notas');
     getDatatable('#table-usuarios');
-
-
     $('.btn-total-notas').click(function () {
         var usuarioID = $(this).attr('usuario-id');
         console.log(usuarioID);
@@ -27,6 +25,10 @@ $(document).ready(function () {
 
     });
 });
+
+
+
+
 
 function getDatatable(id) {
     $(id).DataTable({
@@ -60,7 +62,7 @@ function getDatatable(id) {
     });
 }
 
-
+    
 
 $('.close-alert').click(function () {
     $('.alert').hide('hide');

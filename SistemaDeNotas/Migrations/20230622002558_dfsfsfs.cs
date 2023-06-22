@@ -5,7 +5,7 @@
 namespace SistemaDeNotas.Migrations
 {
     /// <inheritdoc />
-    public partial class Atualizacaomap2 : Migration
+    public partial class dfsfsfs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

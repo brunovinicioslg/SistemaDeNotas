@@ -25,6 +25,7 @@
 }
 
 <form asp-controller="AdminNotas" asp-action="Criar" method="post">
+    <input type="hidden" asp-for="UsuarioID" id="idusuario"/>
     <div class="form-group">
         <label for="materia">Matéria</label>
         <input type="text" asp-for="Materia" class="form-control" placeholder="Digite aqui a Matéria">
@@ -54,3 +55,10 @@
     <button type="submit" class="btn btn-primary">Inserir</button>
     <a class="btn btn-secondary btn-block" asp-controller="AdminNotas" asp-action="Index"> Voltar</a>
 </form>
+<script>
+
+    var url = window.location.href;
+    url = url.split('Criar/');
+    url = url[1];
+    document.getElementById('idusuario').value = url;
+</script>

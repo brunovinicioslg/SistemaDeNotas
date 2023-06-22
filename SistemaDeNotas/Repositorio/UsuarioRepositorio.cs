@@ -27,7 +27,7 @@ namespace SistemaDeNotas.Repositorio
         public List<UsuarioModel> BuscarTodos()
         {
             return _bancoContext.Usuarios
-                .Include(x=>x.Notas)
+                .Include(x => x.Notas)
                 .ToList();
         }
         public UsuarioModel Adicionar(UsuarioModel usuario)

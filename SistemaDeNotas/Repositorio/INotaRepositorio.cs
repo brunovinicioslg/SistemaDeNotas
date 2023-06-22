@@ -9,7 +9,7 @@ namespace SistemaDeNotas.Repositorio
         NotaModel ListarPorMateria(string mat);
         List<NotaModel> BuscarTodos(int usuarioId);
         List<NotaModel> BuscarTodosAdm();
-        NotaModel Adicionar(NotaModel nota);
+        NotaModel Adicionar(NotaModel nota2);
         NotaModel Atualizar(NotaModel nota);
 
 

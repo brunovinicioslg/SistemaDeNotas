@@ -12,8 +12,8 @@ using SistemaDeNotas.Data;
 namespace SistemaDeNotas.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20230618161925_CriandoVinculoEntreTAbelas")]
-    partial class CriandoVinculoEntreTAbelas
+    [Migration("20230622002558_dfsfsfs")]
+    partial class dfsfsfs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,9 @@ namespace SistemaDeNotas.Migrations
 
                     b.Property<int?>("UsuarioID")
                         .HasColumnType("int");
+
+                    b.Property<string>("UsuarioNome")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

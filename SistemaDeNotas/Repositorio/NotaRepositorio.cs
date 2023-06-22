@@ -27,12 +27,12 @@ namespace SistemaDeNotas.Repositorio
         {
             return _bancoContext.Notas.ToList();
         }
-        public NotaModel Adicionar(NotaModel nota)
+        public NotaModel Adicionar(NotaModel nota2)
         {
 
-            _bancoContext.Notas.Add(nota);
+            _bancoContext.Notas.Add(nota2);
             _bancoContext.SaveChanges();
-            return nota;
+            return nota2;
         }
 
 

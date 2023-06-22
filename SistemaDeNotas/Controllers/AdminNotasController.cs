@@ -29,8 +29,8 @@ namespace SistemaDeNotas.Controllers
         }
             public IActionResult Criar()
             {
-               // UsuarioModel Usuario = _usuarioRepositorio.ListarPorId(id);
-                return View();
+
+            return View();
             }
             public IActionResult Editar(int id)
             {
@@ -68,19 +68,33 @@ namespace SistemaDeNotas.Controllers
                 }
             }
             [HttpPost]
-            public IActionResult Criar(NotaModel nota)
+         public IActionResult Criar(NotaModel nota)
             {
                 try
                 {
                     if (ModelState.IsValid)
                     {
-                    UsuarioModel Usuario = new UsuarioModel();
-                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-                     Usuario.Perfil = usuarioLogado.Perfil;
-                    if (Usuario.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
-                    nota.UsuarioID = usuarioLogado.Id;
-                   // nota.UsuarioID = Usuario.Id;
-                    nota = _notaRepositorio.Adicionar(nota);
+
+                    NotaModel nota2 = null;
+                    nota2 = new NotaModel()
+                    {
+                        UsuarioID = nota.UsuarioID,
+                        Materia = nota.Materia,
+                        Nota1Bimestre = nota.Nota1Bimestre,
+                        Nota2Bimestre = nota.Nota2Bimestre,
+                        Nota3Bimestre = nota.Nota3Bimestre,
+                        Nota4bimestre = nota.Nota4bimestre,
+
+                    };
+
+
+                    // UsuarioModel UsuarioN = new UsuarioModel();
+                    //UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    // UsuarioN.Perfil = usuarioLogado.Perfil;
+                    //if (UsuarioN.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
+                    // nota.UsuarioID = usuarioLogado.Id;
+                    //nota.UsuarioID = usuarioid;
+                    nota2 = _notaRepositorio.Adicionar(nota2);
                         TempData["MensagemSucesso"] = "Inserido com sucesso";
                         return RedirectToAction("Index");
                     }

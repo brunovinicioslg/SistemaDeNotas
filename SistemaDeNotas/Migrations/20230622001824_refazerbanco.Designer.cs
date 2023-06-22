@@ -12,8 +12,8 @@ using SistemaDeNotas.Data;
 namespace SistemaDeNotas.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20230619014158_Atualizacaomap2")]
-    partial class Atualizacaomap2
+    [Migration("20230622001824_refazerbanco")]
+    partial class refazerbanco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
