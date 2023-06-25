@@ -22,7 +22,43 @@ $(document).ready(function () {
         });
 
     });
+    $(function () {
+        $(document).on('scroll', function () {
+            if ($(window).scrollTop() > 100) {
+                $('.smoothscroll-top').addClass('show');
+            } else {
+                $('.smoothscroll-top').removeClass('show');
+            }
+        });
+        $('.smoothscroll-top').on('click', scrollToTop);
+    });
 
+    function scrollToTop() {
+        verticalOffset = typeof (verticalOffset) != 'undefined' ? verticalOffset : 0;
+        element = $('body');
+        offset = element.offset();
+        offsetTop = offset.top;
+        $('html, body').animate({ scrollTop: offsetTop }, 600, 'linear').animate({ scrollTop: 25 }, 200).animate({ scrollTop: 0 }, 150).animate({ scrollTop: 0 }, 50);
+    }
+    const toggle = document.getElementById("toggle");
+    const refresh = document.getElementById("refresh");
+    const theme = window.localStorage.getItem("theme");
+
+    /* verifica se o tema armazenado no localStorage é escuro
+    se sim aplica o tema escuro ao body */
+    if (theme === "dark") document.body.classList.add("dark");
+
+    // event listener para quando o botão de alterar o tema for clicado
+    toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        if (theme === "dark") {
+            window.localStorage.setItem("theme", "light");
+        } else window.localStorage.setItem("theme", "dark");
+    });
+
+    refresh.addEventListener("click", () => {
+        window.location.reload();
+    });
 
 });
 function listaravisos() {
@@ -75,23 +111,6 @@ $('.close-alert').click(function () {
 });
 
 
-const toggle = document.getElementById("toggle");
-const refresh = document.getElementById("refresh");
-const theme = window.localStorage.getItem("theme");
 
-/* verifica se o tema armazenado no localStorage é escuro
-se sim aplica o tema escuro ao body */
-if (theme === "dark") document.body.classList.add("dark");
 
-// event listener para quando o botão de alterar o tema for clicado
-toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    if (theme === "dark") {
-        window.localStorage.setItem("theme", "light");
-    } else window.localStorage.setItem("theme", "dark");
-});
-
-refresh.addEventListener("click", () => {
-    window.location.reload();
-});
 

@@ -101,3 +101,68 @@ body {
     background-color: var(--bg-grey-light);
     
 }
+
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+
+#content {
+    background: #fff;
+    color: #666;
+    width: 75%;
+    max-width: 900px;
+    box-shadow: 0 0 10px #ccc;
+    line-height: 1.6em;
+    display: block;
+    border-bottom: 2px solid #ddd;
+    border-radius: 3px 3px 5px 5px;
+    font-size: 110%;
+    margin: 25px auto 40px;
+    padding: 25px;
+}
+
+.awal {
+    float: left;
+    color: #f35d5c;
+    background: #fff;
+    line-height: 50px;
+    padding-right: 10px;
+    font-family: times;
+    font-size: 50px;
+}
+
+.smoothscroll-top {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    text-align: center;
+    z-index: 99;
+    background-color: #142136;
+    color: #fff;
+    width: 47px;
+    height: 44px;
+    line-height: 44px;
+    right: 25px;
+    bottom: -25px;
+    padding-top: 2px;
+    border-radius: 5px;
+    transition: all .5s ease-in-out;
+    transition-delay: .2s;
+}
+
+    .smoothscroll-top:hover {
+        background-color: #d19300;
+        color: #fff;
+        transition: all .2s ease-in-out;
+        transition-delay: 0;
+    }
+
+    .smoothscroll-top.show {
+        visibility: visible;
+        cursor: pointer;
+        opacity: 1;
+        bottom: 25px;
+    }
+
+    .smoothscroll-top i.fa {
+        line-height: inherit;
+    }
