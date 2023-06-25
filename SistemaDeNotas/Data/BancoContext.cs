@@ -15,6 +15,8 @@ namespace SistemaDeNotas.Data
         public DbSet<NotaModel> Notas { get; set; }
         public DbSet<UsuarioModel>  Usuarios { get; set; }
 
+        public  DbSet<AvisosModel> Avisos { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new NotaMap());

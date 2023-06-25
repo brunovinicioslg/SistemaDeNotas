@@ -1,0 +1,22 @@
+﻿@model List<AvisosModel>
+
+<body>
+
+    <h1>Bem Vindo</h1>
+    <h2>Mural de Avisos</h2>
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var aviso in Model)
+        {
+            <div class="alert alert-warning" role="alert">
+                <h3>@aviso.AvisoTitulo</h3>
+                <p>@aviso.AvisoCorpo</p>
+            </div>
+                
+        }
+    }
+    else
+    {
+       <p>Nenhum Aviso Encontrado!</p>
+    }
+</body>

@@ -36,6 +36,7 @@ namespace SistemaDeNotas.Controllers
             _sessao.RemoverSessaoDousuario();
             return RedirectToAction("Index", "Login");
         }
+
         [HttpPost]
         public IActionResult Entrar(LoginModel loginModel)
         {

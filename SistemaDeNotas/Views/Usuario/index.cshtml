@@ -20,7 +20,7 @@
 <div class="text-center">
 
     <div class="">
-        <a class="btn btn-primary" role="button" asp-controller="Usuario" asp-action="Criar"> Adicionar Usuario</a>
+        <a class="btn btn-success d-grid gap-2" role="button" asp-controller="Usuario" asp-action="Criar"> Adicionar Usuario</a>
 
     </div>
     <h1 class="display-4">Usuarios Cadastrados</h1>
@@ -28,13 +28,13 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Turma</th>
-                <th scope="col">Email</th>
-                <th scope="col">Notas</th>
-                <th scope="col">Perfil</th>
-                <th scope="col">Data de Alteração</th>
+                <th scope="col">Usuario:</th>
+                <th scope="col">Nome:</th>
+                <th scope="col">Turma:</th>
+                <th scope="col">Email:</th>
+                <th scope="col">Notas:</th>
+                <th scope="col">Perfil:</th>
+                <th scope="col">Data de Alteração:</th>
                <th scope="col"></th>
             </tr>
         </thead>
@@ -60,7 +60,7 @@
                             <div class="btn-group" role="group">
                                 <a role="button" class="btn btn-primary" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="Editar">Editar</a>
                                 <a role="button" class="btn btn-danger" asp-route-id="@usuario.Id" asp-controller="Usuario" asp-action="ApagarConfirmacao">Apagar</a>
-                                <a role="button" class="btn btn-danger" asp-route-id="@usuario.Id" asp-controller="AdminNotas" asp-action="Criar">Criar</a>
+                                <a role="button" class="btn btn-success" asp-route-id="@usuario.Id" asp-controller="AdminNotas" asp-action="Criar">Criar</a>
                             </div>
                            
  
@@ -74,7 +74,7 @@
                     <th scope="row"></th>
                     <th scope="row"></th>
                     <th scope="row"></th>
-                    <th scope="row">Nenhum Usuario Encontrado</th> 
+                    <th scope="row"></th> 
                     <th scope="row"></th>
                     <th scope="row"></th>
                     <th scope="row"></th>

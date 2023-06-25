@@ -20,6 +20,7 @@ namespace SistemaDeNotas
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             builder.Services.AddScoped<ISessao, Sessao>();
             builder.Services.AddScoped<IEmail, Email>();
+            builder.Services.AddScoped<IAvisosRepositorio, AvisosRepositorio>();
 
             builder.Services.AddSession(o =>
             {

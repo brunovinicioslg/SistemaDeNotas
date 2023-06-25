@@ -1,0 +1,59 @@
+﻿@model List<AvisosModel>
+@{
+    ViewData["Title"] = "Administrar Avisos";
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<div class="text-center">
+
+    <div class="">
+        <a class="btn btn-primary" role="button" asp-controller="Avisos" asp-action="Criar"> Adicionar Aviso</a>
+
+    </div>
+    <h1 class="display-4">Esses são os avisos Cadastrados</h1>
+
+    <table class="display" id="table-usuarios" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titulo:</th>
+                <th scope="col">Aviso:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var aviso in Model)
+                {
+                    <tr>
+                        <th scope="row">@aviso.Id</th>
+                        <td>@aviso.AvisoTitulo</td>
+                        <td>@aviso.AvisoCorpo</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <th scope="row"></th>
+                    <td>Nehuma nota cadastrada</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

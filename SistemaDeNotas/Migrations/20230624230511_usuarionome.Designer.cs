@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaDeNotas.Data;
 
@@ -11,9 +12,11 @@ using SistemaDeNotas.Data;
 namespace SistemaDeNotas.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    partial class BancoContextModelSnapshot : ModelSnapshot
+    [Migration("20230624230511_usuarionome")]
+    partial class usuarionome
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,27 +24,6 @@ namespace SistemaDeNotas.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("SistemaDeNotas.Models.AvisosModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AvisoCorpo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AvisoTitulo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Avisos");
-                });
 
             modelBuilder.Entity("SistemaDeNotas.Models.NotaModel", b =>
                 {
@@ -70,10 +52,7 @@ namespace SistemaDeNotas.Migrations
                     b.Property<int>("UsuarioID")
                         .HasColumnType("int");
 
-                    b.Property<string>("UsuarioNome")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UsuarioTurma")
+                    b.Property<string>("UsuarioName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

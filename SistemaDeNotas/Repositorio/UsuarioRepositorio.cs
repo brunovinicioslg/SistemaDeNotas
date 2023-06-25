@@ -58,7 +58,7 @@ namespace SistemaDeNotas.Repositorio
         public UsuarioModel AlterarSenha(AlterarSenhaModel alterarSenhaModel)
         {
             UsuarioModel usuarioDB = ListarPorId(alterarSenhaModel.Id);
-            if (usuarioDB == null) throw new Exception("Houve um erro na atualização da senha, usuario não encontrad.o");
+            if (usuarioDB == null) throw new Exception("Houve um erro na atualização da senha, usuario não encontrado.");
 
             if (!usuarioDB.SenhaValida(alterarSenhaModel.SenhaAtual)) throw new Exception("Senha atual não confere.");
 
@@ -103,6 +103,9 @@ namespace SistemaDeNotas.Repositorio
 
         }
 
-
+        public UsuarioModel BuscarNome(int id)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

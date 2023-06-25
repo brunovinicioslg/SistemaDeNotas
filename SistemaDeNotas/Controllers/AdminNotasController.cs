@@ -4,6 +4,7 @@ using SistemaDeNotas.Filters;
 using SistemaDeNotas.Helper;
 using SistemaDeNotas.Models;
 using SistemaDeNotas.Repositorio;
+using System;
 
 namespace SistemaDeNotas.Controllers
 {
@@ -26,7 +27,7 @@ namespace SistemaDeNotas.Controllers
             List<NotaModel> notas = _notaRepositorio.BuscarTodosAdm();
             return View(notas);
 
-        }
+             }
             public IActionResult Criar()
             {
 
@@ -84,16 +85,19 @@ namespace SistemaDeNotas.Controllers
                         Nota2Bimestre = nota.Nota2Bimestre,
                         Nota3Bimestre = nota.Nota3Bimestre,
                         Nota4bimestre = nota.Nota4bimestre,
+                        UsuarioNome= nota.UsuarioNome,
+                        UsuarioTurma = nota.UsuarioTurma
 
                     };
 
 
-                    // UsuarioModel UsuarioN = new UsuarioModel();
-                    //UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
-                    // UsuarioN.Perfil = usuarioLogado.Perfil;
-                    //if (UsuarioN.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
-                    // nota.UsuarioID = usuarioLogado.Id;
-                    //nota.UsuarioID = usuarioid;
+                    UsuarioModel UsuarioN = new UsuarioModel();
+                    UsuarioModel usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+                    UsuarioModel nome = _usuarioRepositorio.BuscarNome(nota2.UsuarioID);
+                    nota2.UsuarioNome = nome.Nome;
+                    nota2.UsuarioTurma= nome.Turma;
+                    UsuarioN.Perfil = usuarioLogado.Perfil;
+                    if (UsuarioN.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
                     nota2 = _notaRepositorio.Adicionar(nota2);
                         TempData["MensagemSucesso"] = "Inserido com sucesso";
                         return RedirectToAction("Index");

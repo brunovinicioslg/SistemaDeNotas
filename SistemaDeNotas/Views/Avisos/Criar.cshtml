@@ -1,0 +1,41 @@
+﻿@model AvisosModel
+@{
+    ViewData["Title"] = "Cadastrar Avisos";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Cadastrar Avisos</h1>
+
+</div>
+
+@if(TempData["MensagemSucesso"]!= null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form asp-controller="Avisos" asp-action="Criar" method="post">
+    <div class="form-group">
+        <label for="avisotitulo">Titulo do Aviso</label>
+        <input type="text" asp-for="AvisoTitulo" class="form-control" placeholder="Digite aqui a titulo...">
+        @Html.ValidationMessageFor(x=>x.AvisoTitulo)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="avisocorpo">Digite Aqui o Aviso</label>
+        <textarea name="AvisoCorpo" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        <br />
+    </div>
+    <button type="submit" class="btn btn-primary">Inserir</button>
+    <a class="btn btn-secondary btn-block" asp-controller="Avisos" asp-action="Index"> Voltar</a>
+</form>

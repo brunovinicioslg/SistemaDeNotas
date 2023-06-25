@@ -12,8 +12,6 @@ namespace SistemaDeNotas.Repositorio
         NotaModel Adicionar(NotaModel nota2);
         NotaModel Atualizar(NotaModel nota);
 
-
-
         bool Apagar(int id);
     }
 }

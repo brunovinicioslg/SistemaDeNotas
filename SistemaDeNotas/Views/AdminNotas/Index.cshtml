@@ -21,17 +21,18 @@
 
     <h1 class="display-4">Essas são as notas cadastradas</h1>
 
-    <table class="table" id="table-notas">
+    <table class="display" id="table-notas" style="width:100%">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Aluno</th>
-                <th scope="col">Matéria</th>
-                <th scope="col">Nota 1° Bimestre</th>
-                <th scope="col">Nota 2° Bimestre</th>
-                <th scope="col">Nota 3° Bimestre</th>
-                <th scope="col">Nota 4° Bimestre</th>
-                <th scope="col">Média Anual</th>
+                <th scope="col">Aluno:&nbsp</th>
+                <th scope="col">Turma:&nbsp</th>
+                <th scope="col">Matéria:&nbsp</th>
+                <th scope="col">Nota 1° Bimestre:&nbsp</th>
+                <th scope="col">Nota 2° Bimestre:&nbsp</th>
+                <th scope="col">Nota 3° Bimestre:&nbsp</th>
+                <th scope="col">Nota 4° Bimestre:&nbsp</th>
+                <th scope="col">Média Anual:&nbsp</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -42,7 +43,8 @@
                 {
                     <tr>
                         <th scope="row">@nota.Id</th>
-                        <td>@nota.UsuarioID</td>
+                        <td>@nota.UsuarioNome</td>
+                        <td>@nota.UsuarioTurma</td>
                         <td>@nota.Materia</td>
                         <td>@nota.Nota1Bimestre</td>
                         <td>@nota.Nota2Bimestre</td>
@@ -69,7 +71,10 @@
                     <th scope="row"></th>
                     <td></td>
                     <td></td>
-                    <td>Nehuma nota cadastrada</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

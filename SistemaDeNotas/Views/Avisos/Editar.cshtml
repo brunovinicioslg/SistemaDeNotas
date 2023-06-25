@@ -1,0 +1,28 @@
+﻿@model AvisosModel
+@{
+    ViewData["Title"] = "Editar Aviso";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Alterar aviso</h1>
+
+</div>
+
+<form asp-controller="Avisos" asp-action="Alterar" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label for="avisotitulo">Título do Aviso</label>
+        <input type="text" asp-for="AvisoTitulo" class="form-control" placeholder="Digite aqui o titulo">
+        @Html.ValidationMessageFor(x=>x.AvisoTitulo)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="avisocorpo">Aviso</label>
+        <input type="text" asp-for="AvisoCorpo" class="form-control" placeholder="Digite aqui o Aviso">
+        @Html.ValidationMessageFor(x=>x.AvisoCorpo)
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Alterar</button>
+    <a class="btn btn-secondary btn-block" asp-controller="Avisos" asp-action="Index"> Voltar</a>
+</form>

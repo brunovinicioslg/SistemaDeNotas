@@ -16,6 +16,8 @@ namespace SistemaDeNotas.Repositorio
 
         UsuarioModel AlterarSenha(AlterarSenhaModel alterarSenhaModel);
 
+       UsuarioModel BuscarNome(int id);
+
         bool Apagar(int id);
     }
 }
