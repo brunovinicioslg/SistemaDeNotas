@@ -26,6 +26,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Matéria:&nbsp</th>
+                <th scope="col">Precisa de:</th>
                 <th scope="col">Nota 1° Bimestre:&nbsp</th>
                 <th scope="col">Nota 2° Bimestre:&nbsp</th>
                 <th scope="col">Nota 3° Bimestre:&nbsp</th>
@@ -40,6 +41,22 @@
                     <tr>
                         <th scope="row">@nota.Id</th>
                         <td>@nota.Materia</td>
+                        <td>
+                            @{
+                                var necessario = 60 - (nota.Nota1Bimestre + nota.Nota2Bimestre + nota.Nota3Bimestre + nota.Nota4bimestre);
+                            }
+                            @if(necessario >= 0)
+                            {
+                                @necessario
+
+                            }
+                            else
+                            {
+                                var nulo = 0;
+                                @nulo
+                            }
+
+                        </td>
                         <td>@nota.Nota1Bimestre</td>
                         <td>@nota.Nota2Bimestre</td>
                         <td>@nota.Nota3Bimestre</td>
