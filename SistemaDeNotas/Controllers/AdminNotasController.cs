@@ -100,7 +100,7 @@ namespace SistemaDeNotas.Controllers
                     if (UsuarioN.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
                     nota2 = _notaRepositorio.Adicionar(nota2);
                         TempData["MensagemSucesso"] = "Inserido com sucesso";
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", "Usuario");
                     }
                     return View(nota);
                 }
