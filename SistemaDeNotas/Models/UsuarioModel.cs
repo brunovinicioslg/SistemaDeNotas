@@ -13,6 +13,8 @@ namespace SistemaDeNotas.Models
         public string Nome { get; set; }
         [Required(ErrorMessage = "Digite o Usuário")]
         public string Usuario { get; set; }
+        [Required(ErrorMessage = "Digite o Email")]
+        [EmailAddress(ErrorMessage = "Email Inválido")]
         public string? Email { get; set; }
         [Required(ErrorMessage = "Digite a Senha")]
         public string Senha { get; set; }
