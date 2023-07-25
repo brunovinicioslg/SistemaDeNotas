@@ -1,0 +1,63 @@
+﻿@using SistemaDeNotas.Enums;
+@model UsuarioModel
+@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Cadastrar Usuario";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Cadastrar Usuarios</h1>
+
+</div>
+
+@if(TempData["MensagemSucesso"]!= null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form asp-controller="UsuarioGeral" asp-action="Criar" method="post">
+    <div class="form-group">
+        <label for="usuario">Usuário</label>
+        <input type="text" asp-for="Usuario" class="form-control" placeholder="Digite aqui o usuario">
+        @Html.ValidationMessageFor(x=>x.Usuario)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite aqui o Nome">
+        @Html.ValidationMessageFor(x=>x.Nome)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" asp-for="Email" class="form-control" placeholder="Digite aqui o Email">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="turma">Turma</label>
+        <input type="text" asp-for="Turma" class="form-control" placeholder="Digite aqui a Turma">
+        @Html.ValidationMessageFor(x=>x.Turma)
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" asp-for="Senha" class="form-control" placeholder="Digite aqui a Senha">
+        @Html.ValidationMessageFor(x=>x.Senha)
+    </div> 
+    <br />
+    <input type="hidden" asp-for="Perfil" id="perfil"  value="2"/>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Inserir</button>
+</form>
