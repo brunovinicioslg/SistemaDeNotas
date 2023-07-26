@@ -41,6 +41,18 @@ namespace SistemaDeNotas.Repositorio
             _bancoContext.SaveChanges();
             return usuario;
         }
+        public UsuarioModel AdicionarGeral(UsuarioModel usuario)
+        {
+            //gravar no banco de dados
+            UsuarioModel usuarioDB = ListarPorUsuario(usuario.Usuario);
+            if (usuarioDB != null) throw new Exception(" Já existe um usuario com esse nome");
+            usuario.DataCadastro = DateTime.Now;
+            usuario.Perfil = Enums.PerfilEnum.Padrao;
+            usuario.SetSenhaHash();
+            _bancoContext.Usuarios.Add(usuario);
+            _bancoContext.SaveChanges();
+            return usuario;
+        }
 
         public UsuarioModel Atualizar(UsuarioModel usuario)
         {

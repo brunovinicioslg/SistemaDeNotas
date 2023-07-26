@@ -8,7 +8,7 @@ using System;
 
 namespace SistemaDeNotas.Controllers
 {
-    [PaginaRestritaSomenteAdmin]
+    
     public class AdminNotasController : Controller
     {
             private readonly INotaRepositorio _notaRepositorio;
@@ -22,28 +22,34 @@ namespace SistemaDeNotas.Controllers
                 _sessao = sessao;
             _usuarioRepositorio = usuarioRepositorio;
             }
+             [PaginaRestritaSomenteAdmin]
             public IActionResult Index()
             {
+
             List<NotaModel> notas = _notaRepositorio.BuscarTodosAdm();
             return View(notas);
 
              }
+             [PaginaRestritaSomenteAdmin]
             public IActionResult Criar()
             {
 
             return View();
             }
-            public IActionResult Editar(int id)
+             [PaginaRestritaSomenteAdmin]
+             public IActionResult Editar(int id)
             {
                 NotaModel nota = _notaRepositorio.ListarPorId(id);
                 return View(nota);
             }
-            public IActionResult ApagarConfirmacao(int id)
+                [PaginaRestritaSomenteAdmin]
+              public IActionResult ApagarConfirmacao(int id)
             {
                 NotaModel nota = _notaRepositorio.ListarPorId(id);
                 return View(nota);
             }
-            public IActionResult Apagar(int id)
+                [PaginaRestritaSomenteAdmin]
+             public IActionResult Apagar(int id)
             {
                 try
                 {
@@ -69,7 +75,8 @@ namespace SistemaDeNotas.Controllers
                 }
             }
             [HttpPost]
-         public IActionResult Criar(NotaModel nota)
+             [PaginaRestritaSomenteAdmin]
+             public IActionResult Criar(NotaModel nota)
             {
                 try
                 {
@@ -112,7 +119,8 @@ namespace SistemaDeNotas.Controllers
 
             }
             [HttpPost]
-            public IActionResult Alterar(NotaModel nota)
+                [PaginaRestritaSomenteAdmin]
+             public IActionResult Alterar(NotaModel nota)
             {
 
                 try

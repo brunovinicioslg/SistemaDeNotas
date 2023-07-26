@@ -11,6 +11,7 @@ namespace SistemaDeNotas.Repositorio
         UsuarioModel ListarPorId(int id);
         UsuarioModel ListarPorUsuario(string usuario);
         UsuarioModel Adicionar(UsuarioModel usuario);
+        UsuarioModel AdicionarGeral(UsuarioModel usuario);
         UsuarioModel Atualizar(UsuarioModel usuario);
         UsuarioModel AtualizarSenha(UsuarioModel usuario);
 

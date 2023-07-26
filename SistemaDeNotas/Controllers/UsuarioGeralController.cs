@@ -17,9 +17,8 @@ namespace SistemaDeNotas.Controllers
         }
         public IActionResult Index()
         {
-            List<UsuarioModel> usuarios = _usuarioRepositorio.BuscarTodos();
-
-            return View(usuarios);
+   
+            return RedirectToAction("Criar", "UsuarioGeral");
         }
         public IActionResult Criar()
         {
@@ -33,7 +32,7 @@ namespace SistemaDeNotas.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    usuarios = _usuarioRepositorio.Adicionar(usuarios);
+                    usuarios = _usuarioRepositorio.AdicionarGeral(usuarios);
                     TempData["MensagemSucesso"] = "Inserido com sucesso";
                     return RedirectToAction("Index", "Login");
                 }
