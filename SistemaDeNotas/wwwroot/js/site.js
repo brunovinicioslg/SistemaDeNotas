@@ -16,7 +16,7 @@ $(document).ready(function () {
             success: function (result) {
                 $("#listaNotasUsuario").html(result);
                 $('#modalNotasUsuario').modal();
-               getDatatable('#table-notas-usuario');
+                getDatatable('#table-notas-usuario');
 
             }
         });
@@ -78,6 +78,7 @@ function getDatatable(id) {
         "ordering": true,
         "paging": true,
         "searching": true,
+        "stateSave": true,
         "bDestroy": true,
         "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado na tabela",
