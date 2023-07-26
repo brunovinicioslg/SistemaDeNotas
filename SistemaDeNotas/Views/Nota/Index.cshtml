@@ -38,6 +38,22 @@
            @if(Model != null && Model.Any())
             {
                 foreach(var nota in Model){
+                    if (nota.Nota1Bimestre == null)
+                    {
+                        nota.Nota1Bimestre = 0;
+                    }
+                    if (nota.Nota2Bimestre == null)
+                    {
+                        nota.Nota2Bimestre = 0;
+                    }
+                    if (nota.Nota3Bimestre == null)
+                    {
+                        nota.Nota3Bimestre = 0;
+                    }
+                    if (nota.Nota4bimestre == null)
+                    {
+                        nota.Nota4bimestre = 0;
+                    }
                     <tr>
                         <th scope="row">@nota.Id</th>
                         <td>@nota.Materia</td>
@@ -62,6 +78,7 @@
                         <td>@nota.Nota3Bimestre</td>
                         <td>@nota.Nota4bimestre</td>
                         <td>@{
+                                
                                 var total = nota.Nota1Bimestre + nota.Nota2Bimestre + nota.Nota3Bimestre + nota.Nota4bimestre;
                             }
                             @total
