@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using SistemaDeNotas.Data;
 using SistemaDeNotas.Helper;
@@ -6,6 +7,7 @@ using SistemaDeNotas.Repositorio;
 
 namespace SistemaDeNotas
 {
+    
     public class Program
     {
         public static void Main(string[] args)
@@ -30,6 +32,7 @@ namespace SistemaDeNotas
 
 
             // Add services to the container.
+            builder.Services.AddCors();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -40,8 +43,16 @@ namespace SistemaDeNotas
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
+            app.UseCors(options =>
+            {
+                options.
+                AllowAnyOrigin().
+                AllowAnyMethod().
+                AllowAnyHeader();
+            });
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 

@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using SistemaDeNotas.Helper;
 using SistemaDeNotas.Models;
 using SistemaDeNotas.Repositorio;
 
 namespace SistemaDeNotas.Controllers
 {
+    [EnableCors()]
     public class LoginController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;

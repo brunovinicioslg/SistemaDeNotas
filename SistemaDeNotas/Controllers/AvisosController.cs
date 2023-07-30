@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using SistemaDeNotas.Enums;
 using SistemaDeNotas.Filters;
 using SistemaDeNotas.Helper;
@@ -8,6 +9,7 @@ using SistemaDeNotas.Repositorio;
 namespace SistemaDeNotas.Controllers
 {
     [PaginaRestritaSomenteAdmin]
+    [EnableCors]
     public class AvisosController : Controller
     {
         private readonly ISessao _sessao;

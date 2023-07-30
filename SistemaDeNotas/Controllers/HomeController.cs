@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using SistemaDeNotas.Filters;
 using SistemaDeNotas.Models;
 using System.Diagnostics;
@@ -8,8 +9,8 @@ namespace SistemaDeNotas.Controllers
     [PaginaParaUsuarioLogado]
     public class HomeController : Controller
     {
-        
 
+        [EnableCors]
         public IActionResult Index()
         {
             return View();
