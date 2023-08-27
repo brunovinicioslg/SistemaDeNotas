@@ -67,6 +67,9 @@ namespace SistemaDeNotas.Migrations
                     b.Property<float?>("Nota4bimestre")
                         .HasColumnType("real");
 
+                    b.Property<string>("UsuarioEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UsuarioID")
                         .HasColumnType("int");
 

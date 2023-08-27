@@ -5,7 +5,7 @@
 namespace SistemaDeNotas.Migrations
 {
     /// <inheritdoc />
-    public partial class removeitens2 : Migration
+    public partial class vfsdgfdgdg : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

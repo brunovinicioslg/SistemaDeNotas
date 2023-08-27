@@ -17,6 +17,7 @@ namespace SistemaDeNotas.Models
         public string? UsuarioNome { get; set; }
 
         public string? UsuarioTurma { get; set; }
+        public string? UsuarioEmail { get; set; }
         public UsuarioModel? Usuario { get; set; }
         //public object? Enums { get; internal set; }
     }

@@ -11,6 +11,7 @@
 
 <form asp-controller="AdminNotas" asp-action="Alterar" method="post">
     <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="UsuarioID" />
     <div class="form-group">
         <label for="materia">Matéria</label>
         <input type="text" asp-for="Materia" class="form-control" placeholder="Digite aqui a Matéria">

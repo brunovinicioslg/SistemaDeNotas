@@ -15,8 +15,9 @@ namespace SistemaDeNotas.Controllers
         public NotaController(INotaRepositorio notaRepositorio,
                                ISessao sessao)
         {
-            _notaRepositorio= notaRepositorio;
-            _sessao= sessao;
+            _notaRepositorio = notaRepositorio;
+            _sessao = sessao;
+
         }
         public IActionResult Index()
         {
@@ -75,6 +76,7 @@ namespace SistemaDeNotas.Controllers
                     usuario.Perfil = usuarioLogado.Perfil;
                     if(usuario.Perfil != PerfilEnum.Admin) throw new Exception(" Usuário não é admin");
                     //nota.UsuarioID = usuarioLogado.Id;
+                    
                     nota = _notaRepositorio.Adicionar(nota);
                     TempData["MensagemSucesso"] = "Inserido com sucesso";
                      return RedirectToAction("Index");

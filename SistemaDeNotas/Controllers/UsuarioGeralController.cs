@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaDeNotas.Filters;
+using SistemaDeNotas.Helper;
 using SistemaDeNotas.Models;
 using SistemaDeNotas.Repositorio;
 
@@ -9,11 +10,14 @@ namespace SistemaDeNotas.Controllers
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
         private readonly INotaRepositorio _notaRepositorio;
+        private readonly IEmail _email;
         public UsuarioGeralController(IUsuarioRepositorio usuarioRepositorio,
-                                 INotaRepositorio notaRepositorio)
+                                 INotaRepositorio notaRepositorio,
+                                 IEmail email)
         {
             _usuarioRepositorio = usuarioRepositorio;
             _notaRepositorio = notaRepositorio;
+            _email = email;
         }
         public IActionResult Index()
         {
@@ -32,7 +36,16 @@ namespace SistemaDeNotas.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    usuarios = _usuarioRepositorio.AdicionarGeral(usuarios);
+                    if (usuarios != null)
+                    {
+
+                        string mensagem = $"Novo usuario criado: {usuarios.Nome}";
+                        string emailreceber = "brunovinicios775@gmail.com";
+                        bool emailEnviado = _email.Enviar(emailreceber, "Novo Usuario Criado - Sistema de Notas", mensagem);
+
+                     }
+
+                usuarios = _usuarioRepositorio.AdicionarGeral(usuarios);
                     TempData["MensagemSucesso"] = "Inserido com sucesso";
                     return RedirectToAction("Index", "Login");
                 }
