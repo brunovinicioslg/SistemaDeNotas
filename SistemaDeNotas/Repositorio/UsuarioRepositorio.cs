@@ -119,5 +119,6 @@ namespace SistemaDeNotas.Repositorio
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);
         }
+
     }
 }

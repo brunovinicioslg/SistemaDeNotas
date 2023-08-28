@@ -146,12 +146,6 @@ namespace SistemaDeNotas.Controllers
                     UsuarioModel usuario = new UsuarioModel();
                     UsuarioModel nome = _usuarioRepositorio.BuscarNome(nota.UsuarioID);
 
-                    if(nota.UsuarioEmail == null)
-                    {
-                 
-                        nota.UsuarioEmail = nome.Email;
-                    }
-
                     string mensagem = $"Nova nota adicionada para seu Usuario, acesse o sistema e confira! https://sistemadenotas.azurewebsites.net/ ";
                     bool emailEnviado = _email.Enviar(nota.UsuarioEmail, "Nova Nota Cadastrada - E. E. Santa Terezinha", mensagem);
 
