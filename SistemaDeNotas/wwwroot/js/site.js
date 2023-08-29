@@ -3,6 +3,23 @@
 
 // Write your JavaScript code.
 $(document).ready(function () {
+
+    $('#turmavalidate').on('change', function () {
+        validarSelect();
+    });
+
+    var urlEspecifica = window.location.pathname == "/UsuarioGeral/Criar";
+    if (urlEspecifica) {
+        form.addEventListener('submit', (event) => {
+            nameValidate();
+            emailValidate();
+            mainPasswordValidate();
+            comparePassword();
+            validarSelect();
+        });
+
+    }
+
     listaravisos();
     getDatatable('#table-notas');
     getDatatable('#table-usuarios');
@@ -106,13 +123,90 @@ function getDatatable(id) {
     });
 }
 
-    
 
 $('.close-alert').click(function () {
     $('.alert').hide('hide');
 });
 
 
+const form = document.getElementById('form');
+const campos = document.querySelectorAll('.required');
+const spans = document.querySelectorAll('.span-required');
+const spans2 = document.querySelectorAll('.span-valida');
+
+var emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 
 
+
+function setError(index) {
+    campos[index].style.border = '2px solid #e63636'
+    spans[index].style.display = 'block';
+    spans2[index].style.display = 'none';
+    
+}
+function removeError(index) {
+    campos[index].style.border = ''
+    spans[index].style.display = 'none';
+    spans2[index].style.display = 'none';
+}
+
+function userValidate() {
+    if (campos[0].value.length < 3) {
+        setError(0);
+    }
+    else {
+        removeError(0);
+    }
+
+}
+
+
+function nameValidate() {
+    if (campos[1].value.length < 3) {
+        setError(1);
+    }
+    else {
+        removeError(1);
+    }
+
+}
+
+function emailValidate() {
+    if (!emailRegex.test(campos[2].value)) {
+        setError(2);
+    }
+
+    else {
+        removeError(2);
+
+    }
+
+}
+
+function mainPasswordValidate() {
+    if (campos[3].value.length < 8) {
+        setError(3);
+    }
+    else {
+        removeError(3);
+        comparePassword();
+    }
+}
+function comparePassword() {
+    if (campos[3].value == campos[4].value && campos[4].value.length >= 8) {
+        removeError(4);
+    }
+    else {
+        setError(4);
+    }
+}
+
+function validarSelect() {
+    if (!$('#turmavalidate').val()) {
+       setError(5);
+    }
+    else {
+        removeError(5);
+    }
+}

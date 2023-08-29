@@ -36,6 +36,10 @@ namespace SistemaDeNotas.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                   
+
+                usuarios = _usuarioRepositorio.AdicionarGeral(usuarios);
+                    TempData["MensagemSucesso"] = "Inserido com sucesso";
                     if (usuarios != null)
                     {
 
@@ -43,11 +47,9 @@ namespace SistemaDeNotas.Controllers
                         string emailreceber = "brunovinicios775@gmail.com";
                         bool emailEnviado = _email.Enviar(emailreceber, "Novo Usuario Criado - Sistema de Notas", mensagem);
 
-                     }
-
-                usuarios = _usuarioRepositorio.AdicionarGeral(usuarios);
-                    TempData["MensagemSucesso"] = "Inserido com sucesso";
+                    }
                     return RedirectToAction("Index", "Login");
+
                 }
                 return View(usuarios);
             }

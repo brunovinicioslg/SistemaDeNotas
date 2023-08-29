@@ -26,39 +26,59 @@
     </div>
 }
 
-<form asp-controller="UsuarioGeral" asp-action="Criar" method="post">
-    <div class="form-group">
-        <label for="usuario">Usuário</label>
-        <input type="text" asp-for="Usuario" class="form-control" placeholder="Digite aqui o usuario">
-        @Html.ValidationMessageFor(x=>x.Usuario)
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" asp-for="Nome" class="form-control" placeholder="Digite aqui o Nome">
-        @Html.ValidationMessageFor(x=>x.Nome)
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" asp-for="Email" class="form-control" placeholder="Digite aqui o Email">
-        @Html.ValidationMessageFor(x=>x.Email)
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="turma">Turma</label>
-        <input type="text" asp-for="Turma" class="form-control" placeholder="Digite aqui a Turma">
-        @Html.ValidationMessageFor(x=>x.Turma)
-    </div>
-    <br />
-    <div class="form-group">
-        <label for="senha">Senha</label>
-        <input type="password" asp-for="Senha" class="form-control" placeholder="Digite aqui a Senha">
-        @Html.ValidationMessageFor(x=>x.Senha)
-    </div> 
-    <br />
-    <input type="hidden" asp-for="Perfil" id="perfil"  value="2"/>
+<div class="content">
+    <form asp-controller="UsuarioGeral" id="form" asp-action="Criar" method="post">
 
-    <br />
-    <button type="submit" class="btn btn-primary">Inserir</button>
-</form>
+        <div class="form-group">
+            <label for="usuario">Usuário</label>
+            <input type="text" asp-for="Usuario" class="inputs required" placeholder="Digite aqui o usuario" oninput="userValidate()" onclick="userValidate()">
+            <span class="span-valida">@Html.ValidationMessageFor(x=>x.Usuario)</span>
+            <span class="span-required">Deve ter no minimo 03 caracteres</span>
+        </div>
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" asp-for="Nome" class="inputs required" placeholder="Digite aqui o Nome" oninput="nameValidate()" onclick="nameValidate()">
+            <span class="span-valida">@Html.ValidationMessageFor(x=>x.Nome)</span>
+            <span class="span-required">Deve ter no minimo 03 caracteres</span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" asp-for="Email" class="inputs required" placeholder="Digite aqui o Email" oninput="emailValidate()" onclick="emailValidate()">
+            <span class="span-valida">@Html.ValidationMessageFor(x=>x.Email)</span>
+            <span class="span-required">Digite um email válido</span>
+        </div>
+        <div class="form-group">
+            <label for="senha">Senha</label>
+            <input type="password" asp-for="Senha" class="inputs required" placeholder="Digite aqui a Senha" oninput="mainPasswordValidate()" onclick="mainPasswordValidate()">
+            <span class="span-valida">@Html.ValidationMessageFor(x=>x.Senha)</span>
+            <span class="span-required">Digite uma senha com no mínimo 08 caracteres</span>
+        </div>
+        <div class="form-group">
+            <label for="RepetirSenha">Repita sua Senha</label>
+            <input type="password" class="inputs required" placeholder="Confirme aqui sua Senha" oninput="comparePassword()" onclick="comparePassword()">
+            <span class="span-valida">@Html.ValidationMessageFor(x=>x.Senha)</span>
+            <span class="span-required">As senhas devem ser compatíveis</span>
+        </div>
+        <div class="form-group">
+            
+            <label for="turma">Turma</label>
+            <select id="turmavalidate" class="form-select form-select-md mb-3 inputs required" aria-label="Large select example" asp-for="Turma" onChange="validarSelect()" onclick="validarSelect()">
+            <option value="" selected>Escolha sua turma...</option>
+            <option value="103">103</option>
+            <option value="EMTI">EMTI</option>
+            <option value="203">203</option>
+            <option value="102">102</option>
+            <option value="ADM01">ADM 01</option>
+            <option value="ADM03">ADM 03</option>
+            <option value="AGRO01">AGRO 01</option>
+        </select>
+            <span class="span-valida">@Html.ValidationMessageFor(x=>x.Turma)</span>
+            <span class="span-required">Escolha a Turma</span>
+        </div>
+        <input type="hidden" asp-for="Perfil" id="perfil" value="2" />
+        <button type="submit" class="btn btn-primary">Criar</button>
+        <a class="btn btn-danger" asp-controller="Login" asp-action="Index" role="button">Voltar</a>
+    </form>
+</div>
+
+
