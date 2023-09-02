@@ -13,6 +13,9 @@ html {
   html {
     font-size: 16px;
   }
+  .login {
+        max-width: 50vh;
+  }
 
 }
 
@@ -213,3 +216,11 @@ body {
     font-weight: bold;
     gap: 1rem;
 }
+
+footer {
+    display: block;
+    position: relative;
+    width: 100%;
+    clear: both;
+}
+
