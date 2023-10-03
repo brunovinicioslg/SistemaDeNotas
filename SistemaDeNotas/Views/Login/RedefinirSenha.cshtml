@@ -20,11 +20,6 @@
 
 <form asp-controller="Login" asp-action="EnviarLinkParaRedefinirSenha" method="post">
     <!-- Email input -->
-    <div class="form-outline mb-4">
-        <label class="form-label" for="Usuario">Usuário</label>
-        <input type="text" id="usuario" class="form-control" asp-for="Usuario" />
-        @Html.ValidationMessageFor(x=>x.Usuario)
-    </div>
 
     <!-- Password input -->
     <div class="form-outline mb-4">

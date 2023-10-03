@@ -15,9 +15,9 @@ namespace SistemaDeNotas.Repositorio
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Usuario.ToUpper() == usuario.ToUpper());
         }
-        public UsuarioModel BuscarPorEmailELogin(string email, string login)
+        public UsuarioModel BuscarPorEmailELogin(string email)
         {
-            return _bancoContext.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Usuario.ToUpper() == login.ToUpper());
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
         }
         public UsuarioModel ListarPorId(int id)
         {
@@ -34,6 +34,7 @@ namespace SistemaDeNotas.Repositorio
         {
             //gravar no banco de dados
             UsuarioModel usuarioDB = ListarPorUsuario(usuario.Usuario);
+
             if (usuarioDB != null) throw new Exception(" Já existe um usuario com esse nome");
             usuario.DataCadastro = DateTime.Now;
             usuario.SetSenhaHash();
@@ -45,7 +46,10 @@ namespace SistemaDeNotas.Repositorio
         {
             //gravar no banco de dados
             UsuarioModel usuarioDB = ListarPorUsuario(usuario.Usuario);
-            if (usuarioDB != null) throw new Exception(" Já existe um usuario com esse nome");
+            if (usuarioDB != null) throw new Exception(" Este usuario já está cadastrado, tente redefinir sua senha.");
+            UsuarioModel usuarioDB2 = ListarPorEmailCadastro(usuario.Email);
+            if (usuarioDB2 != null) throw new Exception(" Já existe um usuario com esse email");
+
             usuario.DataCadastro = DateTime.Now;
             usuario.Perfil = Enums.PerfilEnum.Padrao;
             usuario.SetSenhaHash();
@@ -114,7 +118,11 @@ namespace SistemaDeNotas.Repositorio
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Usuario == usuario);
 
         }
+        public UsuarioModel ListarPorEmailCadastro(string email)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Email == email);
 
+        }
         public UsuarioModel BuscarNome(int id)
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);

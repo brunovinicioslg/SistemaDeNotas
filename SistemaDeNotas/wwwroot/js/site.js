@@ -5,6 +5,7 @@
 $(document).ready(function () {
 
 
+
     $('#turmavalidate').on('change', function () {
         validarSelect();
     });

@@ -76,12 +76,13 @@ namespace SistemaDeNotas.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UsuarioModel usuario = _usuarioRepositorio.BuscarPorEmailELogin(redefinirSenhaModel.Email, redefinirSenhaModel.Usuario);
+                    UsuarioModel usuario = _usuarioRepositorio.BuscarPorEmailELogin(redefinirSenhaModel.Email);
                     if (usuario != null)
                     {
                         string novaSenha = usuario.GerarNovaSenha();
+                        string user = usuario.Usuario;
                         
-                        string mensagem = $"Sua nova senha é: {novaSenha}";
+                        string mensagem = $"Usuario: {user} <br> Sua nova senha é: {novaSenha}";
                         bool emailEnviado = _email.Enviar(usuario.Email, "Sistema de Notas - Nova Senha", mensagem);
 
                         if (emailEnviado)
@@ -95,7 +96,7 @@ namespace SistemaDeNotas.Controllers
                         }
                         return RedirectToAction("Index", "Login");
                     }
-                    TempData["MensagemErro"] = $"Não conseguimos redefinir sua senha, verifique os dados.";
+                    TempData["MensagemErro"] = $"Não conseguimos redefinir sua senha, verifique seu email.";
                 }
                 return View("RedefinirSenha", redefinirSenhaModel);
             }

@@ -20,9 +20,10 @@
 
 <form asp-controller="Login" asp-action="Entrar" method="post" class="login">
     <!-- Email input -->
-    <div class="form-outline mb-2">
+    <div class="form-outline mb-2 ">
         <label class="form-label" for="Usuario">Usuário</label>
         <input type="text" id="usuario" class="form-control" asp-for="Usuario"/>
+        
         @Html.ValidationMessageFor(x=>x.Usuario)
     </div>
 

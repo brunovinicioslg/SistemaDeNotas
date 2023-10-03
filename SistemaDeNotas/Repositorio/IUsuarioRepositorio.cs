@@ -6,7 +6,7 @@ namespace SistemaDeNotas.Repositorio
     public interface IUsuarioRepositorio
     {
         UsuarioModel BuscarPorlogin(string usuario);
-        UsuarioModel BuscarPorEmailELogin(string email, string login);
+        UsuarioModel BuscarPorEmailELogin(string email);
         List<UsuarioModel> BuscarTodos();
         UsuarioModel ListarPorId(int id);
         UsuarioModel ListarPorUsuario(string usuario);
