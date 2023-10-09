@@ -4,8 +4,7 @@
 // Write your JavaScript code.
 $(document).ready(function () {
 
-
-
+    
     $('#turmavalidate').on('change', function () {
         validarSelect();
     });
@@ -230,3 +229,5 @@ menu.addEventListener('click', () => {
 overlay.addEventListener('click', () => {
     menu.classList.remove('abrir-menu')
 })
+
+

@@ -27,7 +27,7 @@
 }
 
 <div class="content">
-    <form asp-controller="UsuarioGeral" id="form" asp-action="Criar" method="post">
+    <form asp-controller="UsuarioGeral" id="form" asp-action="Criar" method="post" onsubmit='document.getElementById("send").disabled=true'>
 
         <div class="form-group">
             <label for="usuario">Usuário</label>
@@ -76,9 +76,10 @@
             <span class="span-required">Escolha a Turma</span>
         </div>
         <input type="hidden" asp-for="Perfil" id="perfil" value="2" />
-        <button type="submit" class="btn btn-primary">Criar</button>
+        <button type="submit" class="btn btn-primary" id="send">Criar</button>
         <a class="btn btn-danger" asp-controller="Login" asp-action="Index" role="button">Voltar</a>
     </form>
 </div>
+
 
 
